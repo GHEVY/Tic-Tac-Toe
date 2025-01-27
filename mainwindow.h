@@ -39,8 +39,10 @@ private slots:
     QString color();
     void check();
 
-    void on_pushButton_10_clicked();
     void fun(bool arg);
+    void paintEvent(QPaintEvent *event);
+
+    void on_reset_button_clicked();
 
 private:
     Ui::MainWindow *ui;
