@@ -43,6 +43,7 @@ private slots:
     void paintEvent(QPaintEvent *event);
 
     void on_reset_button_clicked();
+    void setBack();
 
 private:
     Ui::MainWindow *ui;

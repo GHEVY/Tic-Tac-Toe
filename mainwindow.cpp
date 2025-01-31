@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setBack();
 }
 
 MainWindow::~MainWindow()
@@ -25,10 +26,10 @@ int x2=-50;
 int y1=-50;
 int y2=-50;
 
+
 void MainWindow::on_pushButton_clicked()
 {
     ui->pushButton->setText(click());
-
     board[0][0] = ui->pushButton->text();
     ui->pushButton->setStyleSheet(color() + "; background: transparent;border:none;");
     ui->pushButton->setEnabled(false);
@@ -173,10 +174,10 @@ void MainWindow::check(){
     }
     if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != "") {
         ui->label->setText(board[1][1] + "  WINS");
-        x1 =50;
-        x2 = 260;
+        x1 =30;
+        x2 = 280;
         y1=260;
-        y2=60;
+        y2=50;
         fun(false);
         return;
     }
@@ -191,15 +192,23 @@ void MainWindow::check(){
 void MainWindow::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    QPen pen(!isX ? Qt::blue : Qt::red);
-    pen.setWidth(5);
+    QPen pen(QColorConstants::Black);
+    pen.setWidth(7);
     painter.setPen(pen);
-    painter.drawLine(x1,y1,x2,y2);
+    painter.drawLine(104,30,104,270);
+    painter.drawLine(204,30,204,270);
+    painter.drawLine(4,105,304,105);
+    painter.drawLine(4,185,304,185);
+    QPainter painter1(this);
+    QPen pen1(!isX ? Qt::blue : Qt::red);
+    pen1.setWidth(3);
+    painter1.setPen(pen1);
+    painter1.drawLine(x1,y1,x2,y2);
 }
 
 
 void MainWindow::fun(bool arg){
-    ui->pushButton->setEnabled(arg);
+    ui->pushButton->  setEnabled(arg);
     ui->pushButton_2->setEnabled(arg);
     ui->pushButton_3->setEnabled(arg);
     ui->pushButton_4->setEnabled(arg);
@@ -208,6 +217,18 @@ void MainWindow::fun(bool arg){
     ui->pushButton_7->setEnabled(arg);
     ui->pushButton_8->setEnabled(arg);
     ui->pushButton_9->setEnabled(arg);
+}
+
+void MainWindow::setBack(){
+    ui->pushButton->setStyleSheet(color() + "; background: transparent;border:none;");
+    ui->pushButton_2->setStyleSheet(color() + "; background: transparent;border:none;");
+    ui->pushButton_3->setStyleSheet(color() + "; background: transparent;border:none;");
+    ui->pushButton_4->setStyleSheet(color() + "; background: transparent;border:none;");
+    ui->pushButton_5->setStyleSheet(color() + "; background: transparent;border:none;");
+    ui->pushButton_6->setStyleSheet(color() + "; background: transparent;border:none;");
+    ui->pushButton_7->setStyleSheet(color() + "; background: transparent;border:none;");
+    ui->pushButton_8->setStyleSheet(color() + "; background: transparent;border:none;");
+    ui->pushButton_9->setStyleSheet(color() + "; background: transparent;border:none;");
 }
 
 
@@ -219,6 +240,7 @@ void MainWindow::on_reset_button_clicked()
             board[i][j] = "";
         }
     }
+    //setBack();
     x1=-50;
     x2=-50;
     y1=-50;
@@ -236,15 +258,7 @@ void MainWindow::on_reset_button_clicked()
     ui->pushButton_8->setText("");
     ui->pushButton_9->setText("");
     update();
-    ui->pushButton->  setStyleSheet("");
-    ui->pushButton_2->setStyleSheet("");
-    ui->pushButton_3->setStyleSheet("");
-    ui->pushButton_4->setStyleSheet("");
-    ui->pushButton_5->setStyleSheet("");
-    ui->pushButton_6->setStyleSheet("");
-    ui->pushButton_7->setStyleSheet("");
-    ui->pushButton_8->setStyleSheet("");
-    ui->pushButton_9->setStyleSheet("");
+
 
 
     fun(true);
